@@ -1,0 +1,27 @@
+{
+  "rules": {
+    "folders": {
+      ".read": true,
+      ".write": true,
+      "$folderId": {
+        ".validate": "newData.hasChildren(['name']) && newData.child('name').isString()"
+      }
+    },
+    "notes": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["folderId"],
+      "$noteId": {
+        ".validate": "newData.hasChildren(['title', 'body', 'folderId']) && newData.child('title').isString() && newData.child('body').isString() && newData.child('folderId').isNumber()"
+      }
+    },
+    "archive": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["folderId"],
+      "$noteId": {
+        ".validate": "newData.hasChildren(['title', 'body', 'folderId']) && newData.child('title').isString() && newData.child('body').isString() && newData.child('folderId').isNumber()"
+      }
+    }
+  }
+}

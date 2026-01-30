@@ -1,47 +1,74 @@
 {
-    "folders": [
-        {
-            "name": "Listy",
-            "id": 1
-        },
-        {
-            "name": "Przemyślenia",
-            "id": 2
-        }
-    ],
-    "archive": {
-        "folderId": 3
+  "folders": [
+    {
+      "name": "Listy",
+      "id": 1
     },
-    "notes": [
-        {
-            "id": 5,
-            "folderId": 2,
-            "title": "Albert Einstein",
-            "body": "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."
-        },
-        {
-            "id": 7,
-            "title": "Sun Tzu",
-            "folderId": 2,
-            "body": "Osiągnąć sto zwycięstw w stu bitwach nie jest szczytem umiejętności. Szczytem umiejętności jest pokonanie przeciwnika bez walki."
-        },
-        {
-            "title": "Lista zakupów na wakacje",
-            "body": "\nKup ubezpieczenie,\nKup bilety,\nZarezerwuj hotel\n",
-            "folderId": 1,
-            "id": 8
-        },
-        {
-            "title": "Lista zakupów",
-            "body": "\n1. Herbata,\n2. Ziemianki,\n 3. Woda gazowana\n",
-            "folderId": 1,
-            "id": 10
-        },
-        {
-            "title": "Kurs React - TODO",
-            "body": "\n1. Napisać odcinki\n2. Nargrać odcinki",
-            "folderId": 1,
-            "id": 15
-        }
-    ]
+    {
+      "name": "To do",
+      "id": 2
+    },
+    {
+      "name": "Nowy folder",
+      "id": 3
+    }
+  ],
+  "archive": [
+    {
+      "title": "Nowa notatka",
+      "body": "Treść notatki",
+      "folderId": 2,
+      "id": 1
+    },
+    {
+      "title": "Nowa notatka",
+      "body": "Treść notatki",
+      "folderId": 2,
+      "id": 2
+    },
+    {
+      "title": "Nowa notatka",
+      "body": "Treść notatki",
+      "folderId": 2,
+      "id": 3
+    }
+  ],
+  "notes": [
+    {
+      "id": 5,
+      "folderId": 2,
+      "title": "Kupić bilety do Włoch",
+      "body": "Kupić bilety do Włoch"
+    },
+    {
+      "id": 7,
+      "title": "Zarezerwować hotel",
+      "folderId": 2,
+      "body": "Zarezerwować hotel na dwa tygodnie"
+    },
+    {
+      "title": "Lista zakupów na wakacje",
+      "body": "Kup ubezpieczenie,\nKup bilety,\nZarezerwuj hotel\n",
+      "folderId": 1,
+      "id": 8
+    },
+    {
+      "title": "Lista zakupów",
+      "body": "1. Herbata,\n2. Ziemianki,\n3. Woda gazowana",
+      "folderId": 1,
+      "id": 10
+    },
+    {
+      "title": "Nowa notatka",
+      "body": "Treść notatki",
+      "folderId": "1",
+      "id": 2
+    },
+    {
+      "title": "Nowa notatka",
+      "body": "Treść notatki",
+      "folderId": 1,
+      "id": 11
+    }
+  ]
 }

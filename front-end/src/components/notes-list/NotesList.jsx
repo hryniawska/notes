@@ -1,79 +1,70 @@
 import styles from "./NotesList.module.css";
-import { useState } from "react";
 import { Title } from "../title/Title";
 import { AddNewButton } from "../add-new-button/AddNewButton";
 import { TopBar } from "../top-bar/TopBar";
 import { ShortNote } from "../short-note/ShortNote";
-import { Note } from "../note/Note";
+import {
+  useLoaderData,
+  NavLink,
+  Outlet,
+  Form,
+  redirect,
+  useLocation,
+} from "react-router-dom";
+import * as firebase from "../../firebase";
 
 const NotesContainer = ({ children }) => (
-    <div className={styles["notes-container"]}>{children}</div>
+  <div className={styles["notes-container"]}>{children}</div>
 );
 
 const Notes = ({ children }) => (
-    <div className={styles["notes-list"]} role="list">
-        {children}
-    </div>
+  <div className={styles["notes-list"]} role="list">
+    {children}
+  </div>
 );
 
+export async function createNote({ params }) {
+  const data = await firebase.createNote(
+    "Nowa notatka",
+    "Treść notatki",
+    params.folderId,
+  );
+  return redirect(`/notes/${data.folderId}/note/${data.id}`);
+}
+
 export function NotesList() {
-    const [notes] = useState([
-        {
-            id: 5,
-            folderId: 2,
-            title: "Albert Einstein",
-            body: "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning.",
-        },
-        {
-            id: 7,
-            title: "Sun Tzu",
-            folderId: 2,
-            body: "Osiągnąć sto zwycięstw w stu bitwach nie jest szczytem umiejętności. Szczytem umiejętności jest pokonanie przeciwnika bez walki.",
-        },
-        {
-            title: "Nowa notatka",
-            body: "Tutaj wpisz treść swojej notatki alasdasdasdasdlaksjd asd ",
-            folderId: 1,
-            id: 8,
-        },
-        {
-            title: "Nowa notatka",
-            body: "Tutaj wpisz treść swojej notatki",
-            folderId: 1,
-            id: 10,
-        },
-        {
-            title: "Nowa notatkaqq",
-            body: "Tutaj wpisz treść swojej notatki",
-            folderId: 1,
-            id: 15,
-        },
-        {
-            title: "Nowa notatka",
-            body: "Tutaj wpisz treść swojej notatki",
-            folderId: 1,
-            id: 17,
-        },
-    ]);
+  const notes = useLoaderData();
+  const location = useLocation();
 
-    return (
-        <NotesContainer>
-            <Notes>
-                <TopBar>
-                    <Title>Notatki</Title>
+  return (
+    <NotesContainer>
+      <Notes>
+        <TopBar>
+          <Title>Notatki</Title>
+          <Form method="POST" aria-label="Utwórz nową notatkę">
+            <AddNewButton type="submit" aria-label="Dodaj nową notatkę">
+              +
+            </AddNewButton>
+          </Form>
+        </TopBar>
 
-                    <AddNewButton>+</AddNewButton>
-                </TopBar>
-
-                {notes.map((note, idx) => (
-                    <ShortNote
-                        role="listitem"
-                        key={idx}
-                        note={note}
-                    ></ShortNote>
-                ))}
-            </Notes>
-            <Note />
-        </NotesContainer>
-    );
+        {notes.map((note, idx) => (
+          <NavLink
+            to={
+              location.pathname.includes("/archive")
+                ? `/archive/note/${note.id}`
+                : `/notes/${note.folderId}/note/${note.id}`
+            }
+            key={idx}
+            aria-label={`Notatka: ${note.title || "Bez tytułu"}`}
+          >
+            {({ isActive }) => (
+              <ShortNote active={isActive} note={note}></ShortNote>
+            )}
+          </NavLink>
+        ))}
+      </Notes>
+      <Outlet />
+    </NotesContainer>
+  );
 }

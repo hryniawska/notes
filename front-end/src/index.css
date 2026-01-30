@@ -1,0 +1,52 @@
+:root {
+  --primary-color: #ac8cff;
+  --secondary-color: #c9b5fb;
+  --font-color: #333333;
+  --background-color-light: #d3dde5;
+  --background-color: #ede7ff;
+  --color-white: #ffffff;
+  --color-dark: #2d2d2d;
+  --color-error: #e74c3c;
+  --color-border: #e0d7f5;
+  --color-hover: #f5f0ff;
+  --color-active: #fff4d6;
+  --color-folder-bg: #f8f9fa;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: Helvetica, sans-serif;
+  min-height: 100vh;
+  color: var(--font-color);
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}

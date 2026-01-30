@@ -1,7 +1,16 @@
 .title {
-    font-size: 12px;
-    font-weight: 600;
-    color: grey;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--font-color);
+  opacity: 0.7;
+  margin: 12px 20px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
-    margin: 10px;
+@media (max-width: 768px) {
+  .title {
+    font-size: 12px;
+    margin: 12px 16px 8px;
+  }
 }

@@ -5,25 +5,23 @@
             "id": 1
         },
         {
-            "name": "Przemyślenia",
+            "name": "To do",
             "id": 2
         }
     ],
-    "archive": {
-        "folderId": 3
-    },
+    "archive": [],
     "notes": [
         {
             "id": 5,
             "folderId": 2,
-            "title": "Albert Einstein",
-            "body": "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning."
+            "title": "Kupić bilety do Włoch",
+            "body": "Kupić bilety do Włoch"
         },
         {
             "id": 7,
-            "title": "Sun Tzu",
+            "title": "Zarezerwować hotel",
             "folderId": 2,
-            "body": "Osiągnąć sto zwycięstw w stu bitwach nie jest szczytem umiejętności. Szczytem umiejętności jest pokonanie przeciwnika bez walki."
+            "body": "Zarezerwować hotel na dwa tygodnie"
         },
         {
             "title": "Lista zakupów na wakacje",
@@ -33,15 +31,9 @@
         },
         {
             "title": "Lista zakupów",
-            "body": "\n1. Herbata,\n2. Ziemianki,\n 3. Woda gazowana\n",
+            "body": "\n1. Herbata,\n2. Ziemianki,\n3. Woda gazowana\n",
             "folderId": 1,
             "id": 10
-        },
-        {
-            "title": "Kurs React - TODO",
-            "body": "\n1. Napisać odcinki\n2. Nargrać odcinki",
-            "folderId": 1,
-            "id": 15
         }
     ]
 }

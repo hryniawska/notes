@@ -1,17 +1,33 @@
 .add-new-button {
-    border: 1px solid grey;
-    color: grey;
-    cursor: pointer;
-    margin-left: 5px;
-    background-color: transparent;
-    border-radius: 50%;
-    width: 27px;
-    height: 27px;
-    font-size: 20px;
-    transform: scale(0.7);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  margin-left: 8px;
+  background-color: transparent;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .add-new-button:hover {
-    color: black;
-    border-color: black;
+  background-color: var(--primary-color);
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.add-new-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .add-new-button {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
 }

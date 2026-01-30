@@ -1,9 +1,22 @@
 .top-bar {
-    padding: 10px;
-    padding-bottom: 0;
-    border-bottom: 1px solid #d5d0d0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
+  padding: 16px 20px;
+  border-bottom: 2px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    padding: 8px 12px;
+    height: auto;
+    min-height: 44px;
+    gap: 8px;
+  }
 }
