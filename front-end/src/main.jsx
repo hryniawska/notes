@@ -14,110 +14,113 @@ import { deleteFromArchive } from "./components/note/Note";
 import { restoreFromArchive } from "./components/note/Note";
 import * as firebase from "./firebase";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <NotFound />,
-    shouldRevalidate: ({ formAction }) => {
-      if (formAction === "/") {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    loader: async () => {
-      return firebase.getFolders();
-    },
-    action: createFolder,
-    children: [
-      {
-        index: true,
-        element: null,
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <NotFound />,
+      shouldRevalidate: ({ formAction }) => {
+        if (formAction === "/") {
+          return true;
+        } else {
+          return false;
+        }
       },
-      {
-        path: "/notes/:folderId",
-        element: <NotesList />,
-        errorElement: <NotFound />,
-        loader: async ({ params }) => {
-          return firebase.getNotesByFolder(params.folderId);
+      loader: async () => {
+        return firebase.getFolders();
+      },
+      action: createFolder,
+      children: [
+        {
+          index: true,
+          element: null,
         },
-        action: createNote,
-        children: [
-          {
-            path: "note/:noteId",
-            element: <Note />,
-            errorElement: <NotFound />,
-            shouldRevalidate: ({ formAction }) => {
-              if (formAction) {
-                return false;
-              } else {
-                return true;
-              }
-            },
-            loader: async ({ params }) => {
-              const note = await firebase.getNote(params.noteId);
-              if (!note) {
-                throw new Error();
-              }
-              return note;
-            },
-            action: updateNote,
-            children: [
-              {
-                path: "delete",
-                action: moveToArchive,
-              },
-            ],
+        {
+          path: "/notes/:folderId",
+          element: <NotesList />,
+          errorElement: <NotFound />,
+          loader: async ({ params }) => {
+            return firebase.getNotesByFolder(params.folderId);
           },
-        ],
-      },
-      {
-        path: "archive",
-        element: <NotesList />,
-        errorElement: <NotFound />,
-        loader: async () => {
-          return firebase.getArchiveNotes();
+          action: createNote,
+          children: [
+            {
+              path: "note/:noteId",
+              element: <Note />,
+              errorElement: <NotFound />,
+              shouldRevalidate: ({ formAction }) => {
+                if (formAction) {
+                  return false;
+                } else {
+                  return true;
+                }
+              },
+              loader: async ({ params }) => {
+                const note = await firebase.getNote(params.noteId);
+                if (!note) {
+                  throw new Error();
+                }
+                return note;
+              },
+              action: updateNote,
+              children: [
+                {
+                  path: "delete",
+                  action: moveToArchive,
+                },
+              ],
+            },
+          ],
         },
-        children: [
-          {
-            path: "note/:noteId",
-            element: <Note />,
-            errorElement: <NotFound />,
-            shouldRevalidate: ({ formAction }) => {
-              if (formAction) {
-                return false;
-              } else {
-                return true;
-              }
-            },
-            loader: async ({ params }) => {
-              const note = await firebase.getArchivedNote(params.noteId);
-              if (!note) {
-                throw new Error();
-              }
-              return note;
-            },
-            children: [
-              {
-                path: "delete",
-                action: deleteFromArchive,
-              },
-              {
-                path: "restore",
-                action: restoreFromArchive,
-              },
-            ],
+        {
+          path: "archive",
+          element: <NotesList />,
+          errorElement: <NotFound />,
+          loader: async () => {
+            return firebase.getArchiveNotes();
           },
-        ],
-      },
-    ],
-  },
-  {
-    path: "*",
-    element: <NotFound />,
-  },
-]);
+          children: [
+            {
+              path: "note/:noteId",
+              element: <Note />,
+              errorElement: <NotFound />,
+              shouldRevalidate: ({ formAction }) => {
+                if (formAction) {
+                  return false;
+                } else {
+                  return true;
+                }
+              },
+              loader: async ({ params }) => {
+                const note = await firebase.getArchivedNote(params.noteId);
+                if (!note) {
+                  throw new Error();
+                }
+                return note;
+              },
+              children: [
+                {
+                  path: "delete",
+                  action: deleteFromArchive,
+                },
+                {
+                  path: "restore",
+                  action: restoreFromArchive,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
+  ],
+  { basename: "/notes" },
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
